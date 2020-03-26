@@ -1,0 +1,6 @@
+{
+    "username": "csn-node",
+    "password": "csn-node",
+    "hostname": "localhost",
+    "mqttTopic": "csn/#"
+}

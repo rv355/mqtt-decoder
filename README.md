@@ -7,7 +7,7 @@ The current version subscribes to feedmqtt.local, extracts the sensor id and pub
 
 ## Prerequisites
 + python paho-mqtt
-+ >=Python3
++ Python3
 
 ## Running
 

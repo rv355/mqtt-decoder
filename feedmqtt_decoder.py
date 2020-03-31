@@ -1,4 +1,5 @@
 import paho.mqtt.client as mqtt
+from datetime import datetime, timezone
 import json
 
 with open('config_local.json') as json_file:
@@ -6,8 +7,11 @@ with open('config_local.json') as json_file:
 
 def get_msg_to_publish(msg):
     sid = msg.topic.split('/')[1]
-    publish_msg = '{\"acp_id\":\"'+sid+'\", \"payload\":' + str(msg.payload.decode("utf-8")+'}')
-    #print(publish_msg)
+    ts = str(((datetime.now())
+                .replace(tzinfo = timezone.utc))
+                .timestamp())
+
+    publish_msg = '{\"acp_id\":\"'+sid+'\", \"acp_ts\": \"'+ts+'\", \"payload\": ' + str(msg.payload.decode("utf-8"))+'}'
     return(sid,publish_msg)
 
 def on_connect(client, userdata, flags, rc):
